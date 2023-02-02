@@ -17,18 +17,17 @@ pipeline {
             sh 'docker container run -dt --name javacal -p 8090:8080 muralialakuntla3/javaapp'
         }
         }
-        // stage('Docker login') {	
-        // steps {
-        //     sh ''
-        // }
-        // }
-        // stage('Docker Push') {	
-        // steps {
-        //     withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-        //         sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-        //     sh 'docker push muralialakuntla3/javaapp'
-        //     }
-        // }
-        // }
+        stage('Docker login') {	
+        steps {
+            sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+        }
+        }
+        stage('Docker Push') {	
+        steps {
+           withDockerRegistry(credentialsId: 'docker-hub-login', url: 'https://hub.docker.com/repositories/muralialakuntla3') {     
+            sh 'docker push muralialakuntla3/javaapp'
+            }
+        }
+        }
     }
 }
