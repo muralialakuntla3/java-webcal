@@ -7,9 +7,14 @@ pipeline {
     //     DOCKERHUB_CREDENTIALS = credentials('muralialakuntla3-dockerhub')
     // }
     stages{
-        stage('Docker Build') {	
+        // stage('Docker Build') {	
+        // steps {
+        //     sh 'docker build -t muralialakuntla3/javaapp .'
+        // }
+        // }
+        stage('Docker remove container') {	
         steps {
-            sh 'docker build -t muralialakuntla3/javaapp .'
+            sh 'docker container rm -f javacal'
         }
         }
         stage('Docker run container') {	
