@@ -24,14 +24,17 @@ pipeline {
         }
         stage('Docker login') {	
         steps {
-            sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+            withDockerRegistry(credentialsId: 'docker-hub-login', url: 'https://hub.docker.com/repositories/muralialakuntla3') {
+            sh "docker login -u muralialakuntla3 -p Murali33@"
+            }            
+
         }
         }
         stage('Docker Push') {	
         steps {
-           withDockerRegistry(credentialsId: 'docker-hub-login', url: 'https://hub.docker.com/repositories/muralialakuntla3') {     
+      
             sh 'docker push muralialakuntla3/javaapp'
-            }
+            
         }
         }
     }
