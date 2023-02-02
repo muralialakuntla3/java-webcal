@@ -1,11 +1,11 @@
 pipeline {
     agent any
-    optionss {
-        buildDiscarder(LogRotator(numToKeepstr: '6'))
-    }
-    environment {
-        DOCKERHUB_CREDENTIALS = credentials('muralialakuntla3-dockerhub')
-    }
+    // optionss {
+    //     buildDiscarder(LogRotator(numToKeepstr: '6'))
+    // }
+    // environment {
+    //     DOCKERHUB_CREDENTIALS = credentials('muralialakuntla3-dockerhub')
+    // }
     stages{
         stage('Docker Build') {	
         steps {
