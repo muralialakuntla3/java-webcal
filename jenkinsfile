@@ -22,15 +22,15 @@ pipeline {
             sh 'docker container run -dt --name javacal -p 8090:8080 muralialakuntla3/javaapp'
         }
         }
-        stage('Docker login') {	
-        steps {
-            withDockerRegistry(credentialsId: 'docker-hub-login', url: 'https://hub.docker.com/u/muralialakuntla3') 
-            // {
-            // sh "docker login -u muralialakuntla3 -p Murali33@"
-            // }            
+        // stage('Docker login') {	
+        // steps {
+        //     withDockerRegistry(credentialsId: 'docker-hub-login', url: 'https://hub.docker.com/u/muralialakuntla3') 
+        //     // {
+        //     // sh "docker login -u muralialakuntla3 -p Murali33@"
+        //     // }            
 
-        }
-        }
+        // }
+        // }
         stage('Docker Push') {	
         steps {
       
