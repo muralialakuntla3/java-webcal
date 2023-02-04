@@ -24,9 +24,10 @@ pipeline {
         }
         stage('Docker login') {	
         steps {
-            withDockerRegistry(credentialsId: 'docker-hub-login', url: 'https://hub.docker.com/u/muralialakuntla3') {
-            sh "docker login -u muralialakuntla3 -p Murali33@"
-            }            
+            withDockerRegistry(credentialsId: 'docker-hub-login', url: 'https://hub.docker.com/u/muralialakuntla3') 
+            // {
+            // sh "docker login -u muralialakuntla3 -p Murali33@"
+            // }            
 
         }
         }
