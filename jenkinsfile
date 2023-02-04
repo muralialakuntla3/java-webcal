@@ -3,9 +3,9 @@ pipeline {
     // optionss {
     //     buildDiscarder(LogRotator(numToKeepstr: '6'))
     // }
-    // environment {
-    //     DOCKERHUB_CREDENTIALS = credentials('muralialakuntla3-dockerhub')
-    // }
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('docker-hub-login')
+    }
     stages{
         // stage('Docker Build') {	
         // steps {
@@ -22,14 +22,14 @@ pipeline {
             sh 'docker container run -dt --name javacal -p 8090:8080 muralialakuntla3/javaapp'
         }
         }
-        stage('Docker login') {	
-        steps {
-            withDockerRegistry(credentialsId: 'docker-hub-login', url: 'https://hub.docker.com/repositories/muralialakuntla3') {
-            sh "docker login -u muralialakuntla3 -p Murali33@"
-            }            
+        // stage('Docker login') {	
+        // steps {
+        //     withDockerRegistry(credentialsId: 'docker-hub-login', url: 'https://hub.docker.com/repositories/muralialakuntla3') {
+        //     sh "docker login -u muralialakuntla3 -p Murali33@"
+        //     }            
 
-        }
-        }
+        // }
+        // }
         stage('Docker Push') {	
         steps {
       
