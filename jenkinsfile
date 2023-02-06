@@ -1,15 +1,18 @@
 pipeline {
     agent any
-    // optionss {
-    //    buildDiscarder(LogRotator(numToKeepstr: '6'))
-   //  }
-    // environment {
-    //     DOCKERHUB_CREDENTIALS = credentials('muralialakuntla3-dockerhub')
-    // }
-    stages{
-        stage('Docker Build') {	
+
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('muralialakuntla3-dockerhub')
+    }
+    // stages{
+    //     stage('Docker Build') {	
+    //     steps {
+    //         sh 'docker build -t muralialakuntla3/javaapp .'
+    //     }
+    //     }
+        stage('Docker remove container') {	
         steps {
-            sh 'docker build -t muralialakuntla3/javaapp .'
+            sh 'docker container rm -f javacal'
         }
         }
         stage('Docker run container') {	
@@ -17,18 +20,14 @@ pipeline {
             sh 'docker container run -dt --name javacal -p 8090:8080 muralialakuntla3/javaapp'
         }
         }
-        // stage('Docker login') {	
-        // steps {
-        //     sh ''
-        // }
-        // }
-        // stage('Docker Push') {	
-        // steps {
-        //     withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-        //         sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-        //     sh 'docker push muralialakuntla3/javaapp'
-        //     }
-        // }
-        // }
+   
+        stage('Docker Push') {	
+        steps {
+            withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+                sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+            sh 'docker push muralialakuntla3/javaapp'
+            }
+        }
+        }
     }
 }
