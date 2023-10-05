@@ -25,4 +25,4 @@ FROM tomcat
 
 # copy war file
 
-COPY --from=build /webcal/target/WebAppCal-1.3.5 /usr/local/tomcat
+COPY --from=build /webcal/target/WebAppCal-1.3.5 /usr/local/tomcat/webapps
