@@ -3,7 +3,8 @@
   - sudo apt-get update
   - sudo apt install openjdk-11* -y
   - install wget if not--sudo apt install wget
-  - wget https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.94/bin/apache-tomcat-7.0.94.tar.gz
+  - goto https://tomcat.apache.org/ --------choose your tomcat version and copy the binary .tar.gz link
+  - wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.13/bin/apache-tomcat-10.1.13.tar.gz
   - tar xvf apache-tomcat-7.0.94.tar.gz
   -  ~/apache-tomcat-7.0.94/bin/startup.sh
 ## now clone the code and install build tool
